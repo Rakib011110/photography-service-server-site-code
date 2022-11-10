@@ -118,9 +118,6 @@ async function run() {
         })
 
 
-        //     const query = { _id: ObjectId(id) }
-
-        // })
 
 
     }
