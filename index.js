@@ -4,6 +4,7 @@ const cors = require('cors')
 const port = process.env.PORT || 5000
 require("dotenv").config()
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+var jwt = require('jsonwebtoken');
 
 
 
@@ -87,18 +88,45 @@ async function run() {
         })
 
 
-        app.put("/services/:id", async (req, res) => {
-            // const options = { upsert: true };
+        app.get("/reviwsdata/:id", async (req, res) => {
             const id = req.params.id
             const query = { _id: ObjectId(id) }
-            const result = await reviewCollection.updateOne(query, options)
+            const result = await reviewCollection.findOne(query)
             res.send(result)
 
 
         })
 
 
+        app.put('/reviwsdata/:id', async (req, res) => {
+            const id = req.params.id
+            const filter = { _id: ObjectId(id) }
+            const user = req.body;
+            const option = { upsert: true }
+            const updateUser = {
+                $set: {
+                    name: user.name,
+                    email: user.email,
+                    reviewMassage: user.reviewMassage
 
+                }
+            }
+            const result = await reviewCollection.updateOne(filter, updateUser, option)
+
+            res.send(result)
+
+            console.log(updateUser)
+
+        })
+
+
+        // app.get('/reviwsdata/:id', async (req, res) => {
+        //     const id = req.params.id
+        //     const query = { _id: ObjectId(id) }
+        //     const cursor = reviewCollection.find(query)
+        //     const review = await cursor.toArray()
+        //     res.send(review)
+        // })
 
 
     }
