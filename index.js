@@ -12,8 +12,6 @@ app.use(cors())
 app.use(express.json())
 
 
-// user : photographyUser
-// pass: o7dpw0MlkkkqQ8FT
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster1.zm1lzl1.mongodb.net/?retryWrites=true&w=majority`;
@@ -120,10 +118,8 @@ async function run() {
         })
 
 
-        // app.get('/reviwsdata/:id', async (req, res) => {
         //     const id = req.params.id
         //     const query = { _id: ObjectId(id) }
-        //     const cursor = reviewCollection.find(query)
 
         // })
 
