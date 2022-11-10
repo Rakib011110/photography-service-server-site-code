@@ -124,7 +124,6 @@ async function run() {
         //     const id = req.params.id
         //     const query = { _id: ObjectId(id) }
         //     const cursor = reviewCollection.find(query)
-        //     const review = await cursor.toArray()
         //     res.send(review)
         // })
 
